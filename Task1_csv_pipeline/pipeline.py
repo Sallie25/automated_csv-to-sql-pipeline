@@ -1,51 +1,61 @@
+import logging
 import pandas as pd
 from pathlib import Path
 from sqlalchemy import create_engine
 
-# Folder containing raw CSV files
-raw_data_path = Path("data/raw")
+# ── Logging Setup ──────────────────────────────────────────────────────────
+# Writes to both terminal and pipeline.log simultaneously
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s  %(levelname)s  %(message)s",
+    handlers=[
+        logging.FileHandler("pipeline.log"),  # Save to file
+        logging.StreamHandler()               # Print to terminal
+    ]
+)
+logger = logging.getLogger(__name__)
 
-# Find all CSV files
+# ── Configuration ──────────────────────────────────────────────────────────
+raw_data_path = Path("data/raw")
+engine = create_engine("sqlite:///pipeline.db")
+
+# ── Scan for CSV files ─────────────────────────────────────────────────────
 csv_files = list(raw_data_path.glob("*.csv"))
 
 if not csv_files:
-    print("No CSV files found in data/raw/")
+    logger.warning("No CSV files found in data/raw/")
     exit()
 
-print(f"Found {len(csv_files)} CSV file(s)\n")
-
-# Create SQLite database connection
-engine = create_engine("sqlite:///pipeline.db")
+logger.info(f"Found {len(csv_files)} CSV file(s)")
 
 
 def clean_table_name(file_path: Path) -> str:
-    """
-    Convert filename into a safe SQL table name.
-    Example: sales-data_2024.csv → sales_data_2024
-    """
+    """Convert filename into a safe SQL table name."""
     return file_path.stem.replace("-", "_").replace(" ", "_").lower()
 
 
+# ── Process each file ──────────────────────────────────────────────────────
+success_count = 0
+error_count = 0
+
 for file in csv_files:
     table_name = clean_table_name(file)
+    logger.info(f"Processing: {file.name} - table: '{table_name}'")
 
-    print(f"\nProcessing file: {file.name}")
-    print(f"Target table: {table_name}")
+    try:
+        # Read CSV
+        df = pd.read_csv(file)
+        logger.info(f"  Shape: {df.shape[0]} rows x {df.shape[1]} columns")
 
-    # Read CSV into DataFrame
-    df = pd.read_csv(file)
+        # Load into database
+        df.to_sql(name=table_name, con=engine, if_exists="replace", index=False)
+        logger.info(f"  [OK] Loaded into '{table_name}'")
+        success_count += 1
 
-    # Print shape
-    print(f"Shape: {df.shape[0]} rows x {df.shape[1]} columns")
+    except Exception as e:
+        # Log the error but continue to the next file
+        logger.error(f"  [FAILED] Failed to process {file.name}: {e}")
+        error_count += 1
 
-    # Load into its OWN table
-    df.to_sql(
-        name=table_name,
-        con=engine,
-        if_exists="replace",  # overwrite per file
-        index=False
-    )
-
-    print(f"Loaded into table: {table_name}")
-
-print("\nPipeline completed successfully.")
+# ── Summary ────────────────────────────────────────────────────────────────
+logger.info(f"\nPipeline complete — {success_count} loaded, {error_count} failed")
