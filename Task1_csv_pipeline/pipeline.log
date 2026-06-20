@@ -1,0 +1,49 @@
+2026-06-20 01:03:40,201  INFO  Found 11 CSV file(s)
+2026-06-20 01:03:40,299  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:03:41,445  INFO    Shape: 11 rows x 8 columns
+2026-06-20 01:03:41,974  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:03:42,625  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:03:43,262  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:03:43,866  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:03:44,474  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:03:45,101  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:03:45,746  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:03:46,410  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:03:47,071  INFO  
+Pipeline complete — 10 loaded, 1 failed
+2026-06-20 01:20:28,041  INFO  Found 11 CSV file(s)
+2026-06-20 01:20:28,042  INFO  Processing: customer_orders.csv - table: 'customer_orders'
+2026-06-20 01:20:28,048  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:20:28,865  INFO    [OK] Loaded into 'customer_orders'
+2026-06-20 01:20:28,868  INFO  Processing: employees.csv - table: 'employees'
+2026-06-20 01:20:28,918  INFO    Shape: 11 rows x 8 columns
+2026-06-20 01:20:29,420  INFO    [OK] Loaded into 'employees'
+2026-06-20 01:20:29,422  INFO  Processing: inventory.csv - table: 'inventory'
+2026-06-20 01:20:29,430  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:20:29,938  INFO    [OK] Loaded into 'inventory'
+2026-06-20 01:20:29,969  INFO  Processing: payroll.csv - table: 'payroll'
+2026-06-20 01:20:29,999  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:20:30,561  INFO    [OK] Loaded into 'payroll'
+2026-06-20 01:20:30,566  INFO  Processing: product_returns.csv - table: 'product_returns'
+2026-06-20 01:20:30,583  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:20:31,161  INFO    [OK] Loaded into 'product_returns'
+2026-06-20 01:20:31,162  INFO  Processing: project_tasks.csv - table: 'project_tasks'
+2026-06-20 01:20:31,167  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:20:31,770  INFO    [OK] Loaded into 'project_tasks'
+2026-06-20 01:20:31,776  INFO  Processing: sales_q1.csv - table: 'sales_q1'
+2026-06-20 01:20:31,782  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:20:32,388  INFO    [OK] Loaded into 'sales_q1'
+2026-06-20 01:20:32,391  INFO  Processing: store_branches.csv - table: 'store_branches'
+2026-06-20 01:20:32,401  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:20:32,947  INFO    [OK] Loaded into 'store_branches'
+2026-06-20 01:20:32,951  INFO  Processing: supplier_invoices.csv - table: 'supplier_invoices'
+2026-06-20 01:20:32,983  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:20:33,583  INFO    [OK] Loaded into 'supplier_invoices'
+2026-06-20 01:20:33,585  INFO  Processing: training_records.csv - table: 'training_records'
+2026-06-20 01:20:33,597  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:20:34,128  INFO    [OK] Loaded into 'training_records'
+2026-06-20 01:20:34,129  INFO  Processing: website_traffic.csv - table: 'website_traffic'
+2026-06-20 01:20:34,134  INFO    Shape: 12 rows x 8 columns
+2026-06-20 01:20:34,489  INFO    [OK] Loaded into 'website_traffic'
+2026-06-20 01:20:34,503  INFO  
+Pipeline complete — 11 loaded, 0 failed
