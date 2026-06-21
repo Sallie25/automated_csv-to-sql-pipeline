@@ -4,6 +4,8 @@ from pathlib import Path
 from sqlalchemy import create_engine
 from transform import transform_dataframe 
 
+
+
 # ── Logging Setup ──────────────────────────────────────────────────────────
 # Writes to both terminal and pipeline.log simultaneously
 logging.basicConfig(
@@ -16,51 +18,55 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ── Configuration ──────────────────────────────────────────────────────────
-raw_data_path = Path("data/raw")
-engine = create_engine("sqlite:///pipeline.db")
+def run_pipeline():
+    # ── Configuration ──────────────────────────────────────────────────────────
+    raw_data_path = Path("data/raw")
+    engine = create_engine("sqlite:///pipeline.db")
 
-# ── Scan for CSV files ─────────────────────────────────────────────────────
-csv_files = list(raw_data_path.glob("*.csv"))
+    # ── Scan for CSV files ─────────────────────────────────────────────────────
+    csv_files = list(raw_data_path.glob("*.csv"))
 
-if not csv_files:
-    logger.warning("No CSV files found in data/raw/")
-    exit()
+    if not csv_files:
+        logger.warning("No CSV files found in data/raw/")
+        exit()
 
-logger.info(f"Found {len(csv_files)} CSV file(s)")
-
-
-def clean_table_name(file_path: Path) -> str:
-    """Convert filename into a safe SQL table name."""
-    return file_path.stem.replace("-", "_").replace(" ", "_").lower()
+    logger.info(f"Found {len(csv_files)} CSV file(s)")
 
 
-# ── Process each file ──────────────────────────────────────────────────────
-success_count = 0
-error_count = 0
+    def clean_table_name(file_path: Path) -> str:
+        """Convert filename into a safe SQL table name."""
+        return file_path.stem.replace("-", "_").replace(" ", "_").lower()
 
-for file in csv_files:
-    table_name = clean_table_name(file)
-    logger.info(f"Processing: {file.name} - table: '{table_name}'")
 
-    try:
-        # Read CSV
-        df = pd.read_csv(file)
-        logger.info(f"  Shape of {table_name} before transformation: {df.shape[0]} rows x {df.shape[1]} columns")
+    # ── Process each file ──────────────────────────────────────────────────────
+    success_count = 0
+    error_count = 0
 
-        # Transform the dataframe
-        df = transform_dataframe(df, source_filename=file.name)
-        logger.info(f"  Shape of {table_name} after transformation: {df.shape[0]} rows x {df.shape[1]} columns")
-        
-        # Load into database
-        df.to_sql(name=table_name, con=engine, if_exists="replace", index=False)
-        logger.info(f"  [OK] Loaded into '{table_name}'")
-        success_count += 1
+    for file in csv_files:
+        table_name = clean_table_name(file)
+        logger.info(f"Processing: {file.name} - table: '{table_name}'")
 
-    except Exception as e:
-        # Log the error but continue to the next file
-        logger.error(f"  [FAILED] Failed to process {file.name}: {e}")
-        error_count += 1
+        try:
+            # Read CSV
+            df = pd.read_csv(file)
+            logger.info(f"  Shape of {table_name} before transformation: {df.shape[0]} rows x {df.shape[1]} columns")
 
-# ── Summary ────────────────────────────────────────────────────────────────
-logger.info(f"\nPipeline complete — {success_count} loaded, {error_count} failed")
+            # Transform the dataframe
+            df = transform_dataframe(df, source_filename=file.name)
+            logger.info(f"  Shape of {table_name} after transformation: {df.shape[0]} rows x {df.shape[1]} columns")
+
+            # Load into database
+            df.to_sql(name=table_name, con=engine, if_exists="replace", index=False)
+            logger.info(f"  [OK] Loaded into '{table_name}'")
+            success_count += 1
+
+        except Exception as e:
+            # Log the error but continue to the next file
+            logger.error(f"  [FAILED] Failed to process {file.name}: {e}")
+            error_count += 1
+
+    # ── Summary ────────────────────────────────────────────────────────────────
+    logger.info(f"\nPipeline complete — {success_count} loaded, {error_count} failed")
+
+if __name__ == "__main__":
+    run_pipeline()
