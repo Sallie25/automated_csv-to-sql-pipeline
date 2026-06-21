@@ -59,7 +59,7 @@ def fix_data_types(df):
     """Auto-convert date and numeric columns."""
     for col in df.columns:
         if any(k in col for k in ["date", "time"]):
-            df[col] = pd.to_datetime(df[col], errors="coerce")
+            df[col] = pd.to_datetime(df[col], errors="coerce", format = 'mixed')
         elif any(k in col for k in ["amount", "price", "salary", "revenue", "cost", "qty", "quantity", "total"]):
             if df[col].dtype == "object":
                 df[col] = df[col].astype(str).str.replace(r"[$,]", "", regex=True).str.strip()

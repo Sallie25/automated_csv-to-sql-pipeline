@@ -127,3 +127,83 @@ Pipeline complete — 11 loaded, 0 failed
 2026-06-21 16:14:09,940  INFO    [OK] Loaded into 'website_traffic'
 2026-06-21 16:14:09,941  INFO  
 Pipeline complete — 11 loaded, 0 failed
+2026-06-21 16:32:41,249  INFO  Found 11 CSV file(s)
+2026-06-21 16:32:41,249  INFO  Processing: customer_orders.csv - table: 'customer_orders'
+2026-06-21 16:32:41,255  INFO    Shape of customer_orders before transformation: 12 rows x 8 columns
+2026-06-21 16:32:41,255  INFO    Starting transformation...
+2026-06-21 16:32:41,262  INFO    Removed 2 duplicate(s)
+2026-06-21 16:32:41,304  INFO    Done. 2 rows removed.
+2026-06-21 16:32:41,305  INFO    Shape of customer_orders after transformation: 10 rows x 10 columns
+2026-06-21 16:32:41,831  INFO    [OK] Loaded into 'customer_orders'
+2026-06-21 16:32:41,832  INFO  Processing: employees.csv - table: 'employees'
+2026-06-21 16:32:41,840  INFO    Shape of employees before transformation: 11 rows x 8 columns
+2026-06-21 16:32:41,841  INFO    Starting transformation...
+2026-06-21 16:32:41,846  INFO    Removed 1 duplicate(s)
+2026-06-21 16:32:41,850  INFO    Done. 1 rows removed.
+2026-06-21 16:32:41,851  INFO    Shape of employees after transformation: 10 rows x 10 columns
+2026-06-21 16:32:42,330  INFO    [OK] Loaded into 'employees'
+2026-06-21 16:32:42,332  INFO  Processing: inventory.csv - table: 'inventory'
+2026-06-21 16:32:42,338  INFO    Shape of inventory before transformation: 12 rows x 8 columns
+2026-06-21 16:32:42,339  INFO    Starting transformation...
+2026-06-21 16:32:42,352  INFO    Removed 2 duplicate(s)
+2026-06-21 16:32:42,370  INFO    Done. 2 rows removed.
+2026-06-21 16:32:42,371  INFO    Shape of inventory after transformation: 10 rows x 10 columns
+2026-06-21 16:32:42,838  INFO    [OK] Loaded into 'inventory'
+2026-06-21 16:32:42,839  INFO  Processing: payroll.csv - table: 'payroll'
+2026-06-21 16:32:42,843  INFO    Shape of payroll before transformation: 12 rows x 8 columns
+2026-06-21 16:32:42,843  INFO    Starting transformation...
+2026-06-21 16:32:42,848  INFO    Removed 2 duplicate(s)
+2026-06-21 16:32:42,857  INFO    Done. 2 rows removed.
+2026-06-21 16:32:42,858  INFO    Shape of payroll after transformation: 10 rows x 10 columns
+2026-06-21 16:32:43,421  INFO    [OK] Loaded into 'payroll'
+2026-06-21 16:32:43,422  INFO  Processing: product_returns.csv - table: 'product_returns'
+2026-06-21 16:32:43,431  INFO    Shape of product_returns before transformation: 12 rows x 8 columns
+2026-06-21 16:32:43,437  INFO    Starting transformation...
+2026-06-21 16:32:43,451  INFO    Removed 2 duplicate(s)
+2026-06-21 16:32:43,465  INFO    Done. 2 rows removed.
+2026-06-21 16:32:43,466  INFO    Shape of product_returns after transformation: 10 rows x 10 columns
+2026-06-21 16:32:44,006  INFO    [OK] Loaded into 'product_returns'
+2026-06-21 16:32:44,007  INFO  Processing: project_tasks.csv - table: 'project_tasks'
+2026-06-21 16:32:44,023  INFO    Shape of project_tasks before transformation: 12 rows x 8 columns
+2026-06-21 16:32:44,026  INFO    Starting transformation...
+2026-06-21 16:32:44,031  INFO    Removed 2 duplicate(s)
+2026-06-21 16:32:44,040  INFO    Done. 2 rows removed.
+2026-06-21 16:32:44,041  INFO    Shape of project_tasks after transformation: 10 rows x 10 columns
+2026-06-21 16:32:44,616  INFO    [OK] Loaded into 'project_tasks'
+2026-06-21 16:32:44,617  INFO  Processing: sales_q1.csv - table: 'sales_q1'
+2026-06-21 16:32:44,623  INFO    Shape of sales_q1 before transformation: 12 rows x 8 columns
+2026-06-21 16:32:44,624  INFO    Starting transformation...
+2026-06-21 16:32:44,634  INFO    Removed 2 duplicate(s)
+2026-06-21 16:32:44,642  INFO    Done. 2 rows removed.
+2026-06-21 16:32:44,643  INFO    Shape of sales_q1 after transformation: 10 rows x 10 columns
+2026-06-21 16:32:45,390  INFO    [OK] Loaded into 'sales_q1'
+2026-06-21 16:32:45,391  INFO  Processing: store_branches.csv - table: 'store_branches'
+2026-06-21 16:32:45,401  INFO    Shape of store_branches before transformation: 12 rows x 8 columns
+2026-06-21 16:32:45,402  INFO    Starting transformation...
+2026-06-21 16:32:45,406  INFO    Removed 2 duplicate(s)
+2026-06-21 16:32:45,418  INFO    Done. 2 rows removed.
+2026-06-21 16:32:45,419  INFO    Shape of store_branches after transformation: 10 rows x 10 columns
+2026-06-21 16:32:45,980  INFO    [OK] Loaded into 'store_branches'
+2026-06-21 16:32:45,981  INFO  Processing: supplier_invoices.csv - table: 'supplier_invoices'
+2026-06-21 16:32:45,985  INFO    Shape of supplier_invoices before transformation: 12 rows x 8 columns
+2026-06-21 16:32:45,985  INFO    Starting transformation...
+2026-06-21 16:32:45,989  INFO    Removed 2 duplicate(s)
+2026-06-21 16:32:46,000  INFO    Done. 2 rows removed.
+2026-06-21 16:32:46,002  INFO    Shape of supplier_invoices after transformation: 10 rows x 10 columns
+2026-06-21 16:32:46,512  INFO    [OK] Loaded into 'supplier_invoices'
+2026-06-21 16:32:46,514  INFO  Processing: training_records.csv - table: 'training_records'
+2026-06-21 16:32:46,519  INFO    Shape of training_records before transformation: 12 rows x 8 columns
+2026-06-21 16:32:46,522  INFO    Starting transformation...
+2026-06-21 16:32:46,528  INFO    Removed 2 duplicate(s)
+2026-06-21 16:32:46,565  INFO    Done. 2 rows removed.
+2026-06-21 16:32:46,567  INFO    Shape of training_records after transformation: 10 rows x 10 columns
+2026-06-21 16:32:47,090  INFO    [OK] Loaded into 'training_records'
+2026-06-21 16:32:47,093  INFO  Processing: website_traffic.csv - table: 'website_traffic'
+2026-06-21 16:32:47,098  INFO    Shape of website_traffic before transformation: 12 rows x 8 columns
+2026-06-21 16:32:47,098  INFO    Starting transformation...
+2026-06-21 16:32:47,102  INFO    Removed 1 duplicate(s)
+2026-06-21 16:32:47,122  INFO    Done. 1 rows removed.
+2026-06-21 16:32:47,123  INFO    Shape of website_traffic after transformation: 11 rows x 10 columns
+2026-06-21 16:32:47,631  INFO    [OK] Loaded into 'website_traffic'
+2026-06-21 16:32:47,633  INFO  
+Pipeline complete — 11 loaded, 0 failed
