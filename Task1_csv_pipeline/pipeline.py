@@ -2,6 +2,7 @@ import logging
 import pandas as pd
 from pathlib import Path
 from sqlalchemy import create_engine
+from transform import transform_dataframe 
 
 # ── Logging Setup ──────────────────────────────────────────────────────────
 # Writes to both terminal and pipeline.log simultaneously
@@ -45,8 +46,12 @@ for file in csv_files:
     try:
         # Read CSV
         df = pd.read_csv(file)
-        logger.info(f"  Shape: {df.shape[0]} rows x {df.shape[1]} columns")
+        logger.info(f"  Shape of {table_name} before transformation: {df.shape[0]} rows x {df.shape[1]} columns")
 
+        # Transform the dataframe
+        df = transform_dataframe(df, source_filename=file.name)
+        logger.info(f"  Shape of {table_name} after transformation: {df.shape[0]} rows x {df.shape[1]} columns")
+        
         # Load into database
         df.to_sql(name=table_name, con=engine, if_exists="replace", index=False)
         logger.info(f"  [OK] Loaded into '{table_name}'")
